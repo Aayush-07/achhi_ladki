@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nayab Appreciation Portal 🤍</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#fff7fa,#ffffff);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+padding:20px;
+}
+
+.screen{
+display:none;
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 35px rgba(0,0,0,0.08);
+max-width:700px;
+width:100%;
+text-align:center;
+}
+
+.screen.active{
+display:block;
+}
+
+h1,h2{
+color:#ff4d6d;
+margin-bottom:15px;
+}
+
+p{
+line-height:1.8;
+color:#555;
+}
+
+.btn{
+margin-top:20px;
+padding:14px 28px;
+border:none;
+border-radius:40px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+font-size:1rem;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="screen active" id="screen1">
+
+<h1>⚠️ Attention</h1>
+
+<p>
+This webpage contains information
+about someone special.
+</p>
+
+<button class="btn" onclick="showScreen(2)">
+Proceed 🤍
+</button>
+
+</div>
+
+<div class="screen" id="screen2">
+
+<h2>Scanning Nayab...</h2>
+
+<p id="scanText">
+Checking kindness levels...
+</p>
+
+</div>
+
+<div class="screen" id="screen3">
+
+<h2>
+Things Nayab Probably Doesn't Realise About Herself
+</h2>
+
+<p>
+Some findings were simply too interesting to ignore.
+</p>
+
+<button class="btn" onclick="showScreen(4)">
+Show Me
+</button>
+
+</div>
+<div class="screen" id="screen4">
+
+<h2>🔍 Observation #1</h2>
+
+<p>
+You have this strange habit of making people feel comfortable.
+
+<br><br>
+
+Even when you're busy,
+people feel heard when they talk to you.
+</p>
+
+<button class="btn" onclick="showScreen(5)">
+Next
+</button>
+
+</div>
+
+<div class="screen" id="screen5">
+
+<h2>🔍 Observation #2</h2>
+
+<p>
+Whenever your message pops up,
+
+<br><br>
+
+the mood automatically gets a little better.
+</p>
+
+<br>
+
+<p>
+📱 New Message From Nayab
+
+<br><br>
+
+<b>Mood +25%</b>
+</p>
+
+<button class="btn" onclick="showScreen(6)">
+Next
+</button>
+
+</div>
+
+<div class="screen" id="screen6">
+
+<h2>🔍 Observation #3</h2>
+
+<p>
+
+You somehow manage to be
+
+<br><br>
+
+cute,
+
+<br>
+
+stubborn,
+
+<br>
+
+sweet,
+
+<br>
+
+annoying,
+
+<br>
+
+caring,
+
+<br><br>
+
+all at the same time.
+
+</p>
+
+<button class="btn" onclick="showScreen(7)">
+Next
+</button>
+
+</div>
+
+<div class="screen" id="screen7">
+
+<h2>Character Assessment</h2>
+
+<p>
+
+Kindness ............ 98%
+
+<br><br>
+
+Patience ............ 92%
+
+<br><br>
+
+Caring Nature ....... 99%
+
+<br><br>
+
+Drama ............... 63%
+
+<br><br>
+
+Simplicity ............ ERROR
+
+</p>
+
+<br>
+
+<p>
+
+<b>
+
+System unable to calculate.
+
+<br>
+
+Value exceeds maximum limit.
+
+</b>
+
+</p>
+
+<button class="btn" onclick="startEnding()">
+Continue
+</button>
+
+</div>
+
+<div class="screen" id="screen8">
+
+<h2>One More Thing...</h2>
+
+<p id="messageBox"></p>
+
+</div>
+
+<div class="screen" id="screen9">
+
+<h2>🌸 Final Report 🌸</h2>
+
+<p>
+
+This website had only one purpose.
+
+<br><br>
+
+To remind you of something.
+
+<br><br>
+
+You're appreciated.
+
+<br><br>
+
+You're valued.
+
+<br><br>
+
+And you're much more special than you think.
+
+<br><br>
+
+The world is a little better because you're in it.
+
+<br><br>
+
+Thank you for being Nayab. 🤍
+
+</p>
+
+</div>
+
+<audio id="music" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+<script>
+
+// CHANGE SCREEN
+
+function showScreen(number){
+
+document.querySelectorAll('.screen').forEach(screen=>{
+
+screen.classList.remove('active');
+
+});
+
+document.getElementById('screen'+number)
+.classList.add('active');
+
+}
+
+// SCAN ANIMATION
+
+const scanMessages = [
+
+"Checking kindness levels...",
+
+"Checking patience levels...",
+
+"Checking caring nature...",
+
+"Checking simplicity levels...",
+
+"System Error ❌ Values exceed measurable limits."
+
+];
+
+let scanIndex = 0;
+
+setInterval(()=>{
+
+if(document.getElementById('screen2').classList.contains('active')){
+
+document.getElementById('scanText').innerText =
+scanMessages[scanIndex];
+
+scanIndex++;
+
+if(scanIndex >= scanMessages.length){
+
+setTimeout(()=>{
+
+showScreen(3);
+
+},1200);
+
+scanIndex = 0;
+
+}
+
+}
+
+},1200);
+
+// FINAL MESSAGE
+
+function startEnding(){
+
+showScreen(8);
+
+const music = document.getElementById("music");
+
+music.play().catch(()=>{});
+
+const lines = [
+
+"I don't think people tell you this enough.",
+
+"But you're genuinely a good person.",
+
+"Not because you're perfect.",
+
+"Not because you always agree.",
+
+"Just because your heart is in the right place.",
+
+"Aur shayad isi liye...",
+
+"kabhi kabhi tumhe khone ka darr bhi lagta hai."
+
+];
+
+let i = 0;
+
+const box = document.getElementById("messageBox");
+
+box.innerHTML = "";
+
+function addLine(){
+
+if(i < lines.length){
+
+box.innerHTML += lines[i] + "<br><br>";
+
+i++;
+
+setTimeout(addLine,2200);
+
+}
+else{
+
+setTimeout(()=>{
+
+showFinalScreen();
+
+},3000);
+
+}
+
+}
+
+addLine();
+
+}
+
+// FINAL SCREEN
+
+function showFinalScreen(){
+
+showScreen(9);
+
+startFlowers();
+
+}
+
+// FLOWERS
+
+function startFlowers(){
+
+setInterval(()=>{
+
+const flower = document.createElement("div");
+
+flower.innerHTML =
+["🌸","🌷","🌹","💐","🪷"]
+[Math.floor(Math.random()*5)];
+
+flower.style.position = "absolute";
+
+flower.style.left =
+Math.random()*100 + "vw";
+
+flower.style.top = "-50px";
+
+flower.style.fontSize =
+(Math.random()*25 + 20) + "px";
+
+flower.style.animation =
+"fall 5s linear forwards";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>{
+
+flower.remove();
+
+},5000);
+
+},200);
+
+}
+
+// HEARTS
+
+function createHeart(){
+
+const heart = document.createElement("div");
+
+heart.innerHTML = "🤍";
+
+heart.style.position = "absolute";
+
+heart.style.left =
+Math.random()*100 + "vw";
+
+heart.style.bottom = "-20px";
+
+heart.style.fontSize =
+(Math.random()*20 + 15) + "px";
+
+heart.style.animation =
+"float 6s linear forwards";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6000);
+
+}
+
+setInterval(createHeart,350);
+
+</script>
+
+</body>
+
+</html>
